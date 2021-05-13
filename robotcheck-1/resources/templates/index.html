@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+  	<meta charset="utf-8"/>
+    <title>マサオロボ品質管理</title>
+    <link rel="stylesheet" href="/css/bootstrap.css"></link>
+    <script src="/js/jquery.js"></script>
+    <script src="/js/bootstrap.js"></script>
+  </head>
+  <body>
+  	<div class="container">
+    <h1 class="my-2">マサオロボ管理チェックリスト</h1>
+    <form name="checklist">
+    <div class="form-group">
+    	<label class="control-label">商品ID</label>
+        <input class="form-control" type="text" name="id"/>
+        <input type="submit" value="決定"/>
+    </div>
+    <table class="table">
+    	<thead>
+    	<tr>
+			<th>番号</th>
+			<th>項目</th>
+			<th>チェック</th>
+		</tr>
+    	</thead>
+    	<tbody>
+		<tr th:each="che : ${message}" th:object="${che}">
+			<td class="center" th:text="*{id}" name=id></td>
+			<td th:text="*{point}"></td>
+			<td><input type="checkbox" th:text="*{result}" name=result value="false"/>
+			<span id="check"></span></td>
+		</tr>
+    	</tbody>
+	</table>
+	</form>
+	<input type="submit" value="登録" onclick="clickBtn()"/>
+	
+	<script>
+	function clickBtn(){
+		var input_result = document.querySelector("input[name=result]");
+		var checkbox = document.table.id;
+		
+		for(let i; i <= checkbox.length; i++) {
+			if (input_result.checked) {
+      			document.getElementById("check").textContent = "trueです";
+   			} else {
+      			document.getElementById("check").textContent = "falseです";
+			}
+		}
+	}
+	</script>
+   
+	</div>
+  </body>
+</html>
