@@ -23,9 +23,9 @@ public class CheckController {
         return "index";
     }
 	
-	@PostMapping("/saveCheckBox")
+	@PostMapping(path = "saveCheckBox", params = "regist")
 	public String create(@ModelAttribute Check result) {
-		checkService.save(result);
+		checkService.update(result);
 		return "redirect:/";
 	}
 	

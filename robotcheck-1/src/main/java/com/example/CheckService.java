@@ -15,7 +15,7 @@ public class CheckService {
         return checkRepository.findAll();
     }
     
-    public Check save(Check result) {
+    public Check update(Check result) {
         return checkRepository.save(result);
     }
     

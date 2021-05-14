@@ -13,7 +13,7 @@ public class Check {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
     private String point;
-    private Boolean result;
+    private Long result;
     
     public Long getId() {
         return id;
@@ -29,10 +29,10 @@ public class Check {
         this.point = point;
     }
     
-    public Boolean getResult() {
+    public Long getResult() {
         return result;
     }
-    public void setResult(Boolean result) {
+    public void setResult(Long result) {
         this.result = result;
     }
     

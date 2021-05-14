@@ -10,7 +10,7 @@
   <body>
   	<div class="container">
     <h1 class="my-2">マサオロボ管理チェックリスト</h1>
-    <form name="checklist">
+    <form th:action="@{/saveCheckBox}" name="checklist">
     <div class="form-group">
     	<label class="control-label">商品ID</label>
         <input class="form-control" type="text" name="id"/>
@@ -24,31 +24,34 @@
 			<th>チェック</th>
 		</tr>
     	</thead>
-    	<tbody>
+    	<tbody id=tableTbody>
 		<tr th:each="che : ${message}" th:object="${che}">
-			<td class="center" th:text="*{id}" name=id></td>
+			<td class="center" th:text="*{id}"></td>
 			<td th:text="*{point}"></td>
-			<td><input type="checkbox" th:text="*{result}" name=result value="false"/>
+			<label>
+			<td><input type="hidden" th:text="*{result}" name="_result" value="0">
+			<input type="checkbox" th:text="*{result}" name="result" value="1">
 			<span id="check"></span></td>
+			</label>
 		</tr>
     	</tbody>
 	</table>
 	</form>
-	<input type="submit" value="登録" onclick="clickBtn()"/>
+	<input type="submit" name="regist" value="登録" onclick="clickBtn()"/>
 	
 	<script>
-	function clickBtn(){
-		var input_result = document.querySelector("input[name=result]");
-		var checkbox = document.table.id;
-		
-		for(let i; i <= checkbox.length; i++) {
-			if (input_result.checked) {
-      			document.getElementById("check").textContent = "trueです";
-   			} else {
-      			document.getElementById("check").textContent = "falseです";
-			}
-		}
+	function clickBtn()　{　　　　　// チェックボックスの値取得
+	var input_result = document.querySelector("input[name=result]");
+	var hidden_result = document.querySelector("input[name=_result]");
+	
+	if (input_result.checked) {
+      	document.getElementById("check").textContent = input_result.value;
+    } else {
+      	document.getElementById("check").textContent = hidden_result.value;
 	}
+	
+	}
+	
 	</script>
    
 	</div>
